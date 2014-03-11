@@ -17,7 +17,7 @@
 }
 
 - (void)send:(CDVInvokedUrlCommand*)command {
-	
+
 	// MFMessageComposeViewController has been availible since iOS 4.0. There should be no issue with using it straight.
 	if(![MFMessageComposeViewController canSendText]) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice"
@@ -28,7 +28,7 @@
 		[alert show];
 		return;
 	}
-		
+
 	MFMessageComposeViewController *composeViewController = [[MFMessageComposeViewController alloc] init];
 	composeViewController.messageComposeDelegate = self;
 
@@ -72,8 +72,8 @@
 
 	[self.viewController dismissViewControllerAnimated:YES completion:nil];
 	[[UIApplication sharedApplication] setStatusBarHidden:NO];	// Note: I put this in because it seemed to be missing.
-	
-	[self writeJavascript:[NSString stringWithFormat:@"window.plugins.sms._didFinishWithResult(%d);", webviewResult]];
+
+	[self writeJavascript:[NSString stringWithFormat:@"window.sms._didFinishWithResult(%d);", webviewResult]];
 }
 
 @end
